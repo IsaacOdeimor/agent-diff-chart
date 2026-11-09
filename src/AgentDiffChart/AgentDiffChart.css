@@ -1,0 +1,833 @@
+/* ------------------------------------------------------------------ tokens */
+/* Dark is the reference look; light overrides the same tokens below. */
+.adc {
+  color-scheme: dark;
+  --adc-card: #222222;
+  --adc-card-edge: rgba(255, 255, 255, 0.035);
+  --adc-card-shadow: 0 0 0 0 transparent;
+  --adc-text: #f2f2f2;
+  --adc-text-bright: #ececec;
+  --adc-text-meta: #a1a1a1;
+  --adc-text-2: #a3a3a3;
+  --adc-text-3: #888888;
+  --adc-text-4: #757575;
+  --adc-text-5: #6b6b6b;
+  --adc-zero-label: #9d9d9d;
+
+  --adc-avatar-bg: #373737;
+  --adc-avatar-star: #8c8c8c;
+  --adc-avatar-star-2: #ececec;
+
+  --adc-green: #46e874;
+  --adc-green-text: #55f47f;
+  --adc-green-tick: #44e16f;
+  --adc-red: #ef3e48;
+  --adc-red-text: #f05b64;
+  --adc-red-prefix: #e8646d;
+
+  --adc-area-add: rgba(70, 232, 116, 0.075);
+  --adc-area-rem: rgba(239, 62, 72, 0.075);
+  --adc-dot-add-opacity: 0.52;
+  --adc-dot-rem-opacity: 0.45;
+  --adc-halo-add: rgba(70, 232, 116, 0.24);
+  --adc-halo-rem: rgba(239, 62, 72, 0.24);
+  --adc-halo-net: rgba(255, 255, 255, 0.16);
+  --adc-net: rgba(236, 236, 236, 0.5);
+  --adc-net-head: #ededed;
+  --adc-net-swatch: #afafaf;
+  --adc-playhead: rgba(255, 255, 255, 0.2);
+
+  --adc-zero: #4e4e4e;
+  --adc-grid: rgba(255, 255, 255, 0.15);
+  --adc-track: #3b3b3b;
+  --adc-track-active: #4f4f4f;
+  --adc-tick-notch: rgba(34, 34, 34, 0.55);
+  --adc-tick-binary: #cccccc;
+  --adc-axis-tick: #3e3e3e;
+  --adc-axis-tick-reached: #7f7f7f;
+  --adc-crosshair: #5f5f5f;
+
+  --adc-tooltip: #303030;
+  --adc-tooltip-edge: rgba(255, 255, 255, 0.045);
+  --adc-tooltip-shadow: 0 12px 28px rgba(0, 0, 0, 0.36), 0 2px 6px rgba(0, 0, 0, 0.22);
+  --adc-tt-dir: #7a7a7a;
+  --adc-tt-time: #797979;
+  --adc-tt-binary: #b5b5b5;
+  --adc-badge-bg: #3d3d3d;
+  --adc-badge-text: #c4c4c4;
+  --adc-icon-bg: #575757;
+  --adc-icon-glyph: #d4d4d4;
+  --adc-flask: #9a9a9a;
+  --adc-flask-neck: #6a6a6a;
+  --adc-diff-box: #383838;
+  --adc-diff-del: #553c3d;
+  --adc-diff-add: #3f5341;
+  --adc-diff-code: #ededed;
+  --adc-diff-meta: #9c9c9c;
+
+  --adc-font-sans: 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --adc-font-mono: 'Geist Mono', ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+  --adc-size-axis: 9.9px;
+  --adc-size-track: 9.7px;
+  --adc-size-path: 11.3px;
+  --adc-size-tooltip: 11.2px;
+
+  --adc-ease: cubic-bezier(0.22, 0.8, 0.24, 1);
+}
+
+/* Light theme: not in the reference; designed to keep the same hierarchy. */
+.adc[data-theme='light'] {
+  color-scheme: light;
+  --adc-card: #ffffff;
+  --adc-card-edge: rgba(0, 0, 0, 0.08);
+  --adc-card-shadow: 0 1px 2px rgba(0, 0, 0, 0.04), 0 10px 30px rgba(0, 0, 0, 0.06);
+  --adc-text: #18181b;
+  --adc-text-bright: #18181b;
+  --adc-text-meta: #6f6f78;
+  --adc-text-2: #63636b;
+  --adc-text-3: #6f6f78;
+  --adc-text-4: #8b8b93;
+  --adc-text-5: #a1a1a9;
+  --adc-zero-label: #52525b;
+
+  --adc-avatar-bg: #f1f1f3;
+  --adc-avatar-star: #a1a1aa;
+  --adc-avatar-star-2: #27272a;
+
+  --adc-green: #18a84a;
+  --adc-green-text: #13873b;
+  --adc-green-tick: #1fae4f;
+  --adc-red: #e5484d;
+  --adc-red-text: #d42f35;
+  --adc-red-prefix: #d42f35;
+
+  --adc-area-add: rgba(24, 168, 74, 0.06);
+  --adc-area-rem: rgba(229, 72, 77, 0.06);
+  --adc-dot-add-opacity: 0.55;
+  --adc-dot-rem-opacity: 0.5;
+  --adc-halo-add: rgba(24, 168, 74, 0.18);
+  --adc-halo-rem: rgba(229, 72, 77, 0.18);
+  --adc-halo-net: rgba(24, 24, 27, 0.1);
+  --adc-net: rgba(39, 39, 42, 0.45);
+  --adc-net-head: #3f3f46;
+  --adc-net-swatch: #8b8b93;
+  --adc-playhead: rgba(0, 0, 0, 0.16);
+
+  --adc-zero: #c8c8cd;
+  --adc-grid: rgba(0, 0, 0, 0.16);
+  --adc-track: #e7e7ea;
+  --adc-track-active: #cdcdd3;
+  --adc-tick-notch: rgba(255, 255, 255, 0.75);
+  --adc-tick-binary: #71717a;
+  --adc-axis-tick: #dcdce0;
+  --adc-axis-tick-reached: #8b8b93;
+  --adc-crosshair: #b4b4bb;
+
+  --adc-tooltip: #ffffff;
+  --adc-tooltip-edge: rgba(0, 0, 0, 0.09);
+  --adc-tooltip-shadow: 0 12px 32px rgba(0, 0, 0, 0.12), 0 2px 6px rgba(0, 0, 0, 0.06);
+  --adc-tt-dir: #9a9aa2;
+  --adc-tt-time: #9a9aa2;
+  --adc-tt-binary: #52525b;
+  --adc-badge-bg: #f0f0f2;
+  --adc-badge-text: #52525b;
+  --adc-icon-bg: #e4e4e7;
+  --adc-icon-glyph: #52525b;
+  --adc-flask: #a1a1aa;
+  --adc-flask-neck: #71717a;
+  --adc-diff-box: #f6f6f7;
+  --adc-diff-del: #fdebec;
+  --adc-diff-add: #e6f6eb;
+  --adc-diff-code: #27272a;
+  --adc-diff-meta: #71717a;
+}
+
+/* ------------------------------------------------------------------- card */
+.adc-fit {
+  width: 100%;
+}
+
+.adc {
+  position: relative;
+  box-sizing: border-box;
+  background: var(--adc-card);
+  border-radius: 12px;
+  box-shadow: inset 0 0 0 1px var(--adc-card-edge), var(--adc-card-shadow);
+  color: var(--adc-text);
+  font-family: var(--adc-font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-synthesis: none;
+  user-select: none;
+  transform-origin: 0 0;
+  transition:
+    background-color 200ms ease,
+    box-shadow 200ms ease;
+}
+
+/* ----------------------------------------------------------------- header */
+.adc-header {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.adc-avatar {
+  flex: none;
+  width: 29px;
+  height: 29px;
+  border-radius: 6px;
+  background: var(--adc-avatar-bg);
+}
+
+.adc-avatar-mark {
+  display: block;
+  width: 29px;
+  height: 29px;
+}
+
+.adc-avatar-star {
+  fill: var(--adc-avatar-star);
+}
+
+.adc-avatar-star--small {
+  fill: var(--adc-avatar-star-2);
+}
+
+.adc-header-text {
+  flex: 1;
+  min-width: 0;
+}
+
+.adc-title {
+  height: 20px;
+  line-height: 20px;
+  white-space: nowrap;
+}
+
+.adc-title-name {
+  font-size: 14.2px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  color: var(--adc-text);
+}
+
+.adc-title-meta {
+  font-size: 12.6px;
+  color: var(--adc-text-meta);
+}
+
+.adc-status-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 1.25px;
+  line-height: 20px;
+  --adc-lh: 20px;
+}
+
+.adc-status-row.is-compact {
+  flex-direction: column;
+  gap: 0;
+}
+
+.adc-status {
+  min-width: 0;
+  font-size: 12.4px;
+  letter-spacing: -0.01em;
+  color: var(--adc-text-2);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.adc-path {
+  font-family: var(--adc-font-mono);
+  font-size: var(--adc-size-path);
+}
+
+.adc-path-dir {
+  color: var(--adc-text-5);
+}
+
+.adc-path-name {
+  color: var(--adc-text-bright);
+}
+
+.adc-stats {
+  display: flex;
+  align-items: baseline;
+  gap: 8.5px;
+  white-space: nowrap;
+}
+
+.adc-stat-add,
+.adc-stat-rem {
+  font-family: var(--adc-font-mono);
+  font-size: 12.8px;
+}
+
+.adc-stat-add {
+  color: var(--adc-green-text);
+}
+
+.adc-stat-rem {
+  color: var(--adc-red-text);
+}
+
+.adc-stat-rem {
+  margin-right: -3px;
+}
+
+.adc-stat-files {
+  font-size: 12.4px;
+  letter-spacing: -0.01em;
+  color: var(--adc-text-meta);
+}
+
+/* ------------------------------------------------- rolling digits (shared) */
+.adc-roll {
+  display: inline-flex;
+  align-items: flex-start;
+  height: var(--adc-lh, 20px);
+  line-height: var(--adc-lh, 20px);
+  font-variant-numeric: tabular-nums;
+}
+
+.adc-roll-col {
+  display: block;
+  height: var(--adc-lh, 20px);
+  overflow: hidden;
+}
+
+.adc-roll-strip {
+  display: block;
+  transition: transform 460ms var(--adc-ease);
+}
+
+.adc-roll-strip > span {
+  display: block;
+  height: var(--adc-lh, 20px);
+  text-align: center;
+}
+
+/* ------------------------------------------------------------------ chart */
+.adc-svg {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  overflow: visible;
+  pointer-events: none;
+}
+
+.adc-grid {
+  stroke: var(--adc-grid);
+  stroke-width: 1;
+  stroke-dasharray: 1 2.5;
+}
+
+.adc-ylabel {
+  font-family: var(--adc-font-mono);
+  font-size: var(--adc-size-axis);
+  fill: var(--adc-text-4);
+  text-anchor: end;
+}
+
+.adc-ylabel.is-zero {
+  fill: var(--adc-zero-label);
+}
+
+.adc-area--add {
+  fill: var(--adc-area-add);
+}
+
+.adc-area--rem {
+  fill: var(--adc-area-rem);
+}
+
+.adc-dot--add {
+  fill: var(--adc-green);
+  fill-opacity: var(--adc-dot-add-opacity);
+}
+
+.adc-dot--rem {
+  fill: var(--adc-red);
+  fill-opacity: var(--adc-dot-rem-opacity);
+}
+
+.adc-zero {
+  stroke: var(--adc-zero);
+  stroke-width: 1;
+}
+
+.adc-net {
+  fill: none;
+  stroke: var(--adc-net);
+  stroke-width: 1;
+  stroke-dasharray: 2.5 2;
+}
+
+.adc-line {
+  fill: none;
+  stroke-width: 1.75;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+
+.adc-line--add {
+  stroke: var(--adc-green);
+}
+
+.adc-line--rem {
+  stroke: var(--adc-red);
+}
+
+.adc-ripple {
+  fill: none;
+  stroke-width: 1;
+}
+
+.adc-ripple--add {
+  stroke: var(--adc-green);
+}
+
+.adc-ripple--rem {
+  stroke: var(--adc-red);
+}
+
+.adc-playhead {
+  stroke: var(--adc-playhead);
+  stroke-width: 1;
+}
+
+.adc-halo--add {
+  fill: var(--adc-halo-add);
+}
+
+.adc-halo--rem {
+  fill: var(--adc-halo-rem);
+}
+
+.adc-halo--net {
+  fill: var(--adc-halo-net);
+}
+
+.adc-head--add {
+  fill: var(--adc-green);
+}
+
+.adc-head--rem {
+  fill: var(--adc-red);
+}
+
+.adc-head--net {
+  fill: var(--adc-net-head);
+}
+
+.adc-head,
+.adc-halo,
+.adc-playhead {
+  transform-box: fill-box;
+  transform-origin: center;
+  transition:
+    opacity 320ms ease,
+    transform 320ms var(--adc-ease);
+}
+
+.adc-heads.is-done .adc-playhead,
+.adc-heads.is-done .adc-halo {
+  opacity: 0;
+}
+
+.adc-heads.is-done .adc-head {
+  transform: scale(0.68);
+}
+
+.adc-crosshair {
+  stroke: var(--adc-crosshair);
+  stroke-width: 1;
+}
+
+.adc-hover-dot {
+  stroke: var(--adc-card);
+  stroke-width: 1.5;
+}
+
+.adc-hover-dot--add {
+  fill: var(--adc-green);
+}
+
+.adc-hover-dot--rem {
+  fill: var(--adc-red);
+}
+
+.adc-hover-dot--net {
+  fill: var(--adc-net-head);
+  stroke-width: 1;
+}
+
+.adc-axis-tick {
+  stroke: var(--adc-axis-tick);
+  stroke-width: 1;
+  transition: stroke 240ms ease;
+}
+
+.adc-axis-tick.is-reached {
+  stroke: var(--adc-axis-tick-reached);
+}
+
+.adc-axis-labels {
+  position: absolute;
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--adc-font-mono);
+  font-size: var(--adc-size-axis);
+  line-height: 12px;
+  color: var(--adc-text-4);
+}
+
+/* --------------------------------------------------------- file timeline */
+.adc-timeline {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.adc-track {
+  transition: opacity 160ms ease;
+}
+
+.adc-track.is-dim {
+  opacity: 0.55;
+}
+
+.adc-track-bar {
+  position: absolute;
+  height: 5px;
+  border-radius: 1px;
+  background: var(--adc-track);
+  transform-origin: left center;
+  transition:
+    width 360ms var(--adc-ease),
+    background-color 160ms ease;
+  animation: adc-bar-in 360ms var(--adc-ease);
+}
+
+.adc-track.is-active .adc-track-bar {
+  background: var(--adc-track-active);
+}
+
+.adc-track-tick {
+  position: absolute;
+  width: 2px;
+  height: 9px;
+  margin: -4.5px 0 0 -1px;
+  border-radius: 1px;
+  box-shadow: 0 0 0 1px var(--adc-tick-notch);
+  animation: adc-tick-in 240ms var(--adc-ease);
+}
+
+.adc-track-tick--add {
+  background: var(--adc-green-tick);
+}
+
+.adc-track-tick--remove {
+  background: var(--adc-red);
+}
+
+.adc-track-tick--binary {
+  width: 2.5px;
+  height: 8.5px;
+  margin: -4.25px 0 0 -1.25px;
+  border-radius: 1.25px;
+  background: var(--adc-tick-binary);
+}
+
+.adc-track-label {
+  position: absolute;
+  left: 0;
+  top: -6px;
+  font-family: var(--adc-font-mono);
+  font-size: var(--adc-size-track);
+  line-height: 12px;
+  color: var(--adc-text-3);
+  white-space: nowrap;
+  transition:
+    transform 360ms var(--adc-ease),
+    color 160ms ease;
+  animation: adc-fade-in 600ms ease-out;
+}
+
+.adc-track.is-active .adc-track-label {
+  color: var(--adc-text-bright);
+}
+
+.adc-track-label.is-clamped {
+  padding: 0 3px;
+  margin-left: -3px;
+  border-radius: 2px;
+  background: var(--adc-card);
+}
+
+@keyframes adc-bar-in {
+  from {
+    transform: scaleX(0);
+  }
+}
+
+@keyframes adc-tick-in {
+  from {
+    transform: scaleY(0);
+    opacity: 0;
+  }
+}
+
+@keyframes adc-fade-in {
+  from {
+    opacity: 0;
+  }
+}
+
+/* ----------------------------------------------------------------- footer */
+.adc-footer {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  height: 16px;
+  font-size: 11.5px;
+  line-height: 16px;
+  color: var(--adc-text-meta);
+  white-space: nowrap;
+  --adc-lh: 16px;
+}
+
+.adc-legend {
+  display: inline-flex;
+  align-items: center;
+  gap: 5.5px;
+}
+
+.adc-legend-swatch {
+  display: block;
+  width: 11.5px;
+  height: 2px;
+  border-radius: 1px;
+}
+
+.adc-legend-swatch--add {
+  background: var(--adc-green);
+}
+
+.adc-legend-swatch--rem {
+  width: 10.5px;
+  background: var(--adc-red);
+}
+
+.adc-legend-swatch--net {
+  width: 10.5px;
+  height: 1px;
+  border-radius: 0;
+  background: repeating-linear-gradient(90deg, var(--adc-net-swatch) 0 2px, transparent 2px 4px);
+}
+
+.adc-legend-net {
+  margin-left: 0;
+  color: var(--adc-text-bright);
+}
+
+/* ---------------------------------------------------------------- tooltip */
+.adc-tooltip {
+  position: absolute;
+  z-index: 3;
+  box-sizing: border-box;
+  padding: 11px 10px 11px;
+  border: 1px solid var(--adc-tooltip-edge);
+  border-radius: 9px;
+  background: var(--adc-tooltip);
+  box-shadow: var(--adc-tooltip-shadow);
+  font-family: var(--adc-font-mono);
+  font-size: var(--adc-size-tooltip);
+  line-height: 16px;
+  pointer-events: none;
+}
+
+.adc-tt-head {
+  display: flex;
+  align-items: center;
+  gap: 7.5px;
+  padding: 0 1px 0 3px;
+  white-space: nowrap;
+}
+
+.adc-file-icon {
+  flex: none;
+  width: 9px;
+  height: 9px;
+}
+
+.adc-file-icon-bg {
+  fill: var(--adc-icon-bg);
+}
+
+.adc-file-icon-glyph {
+  fill: none;
+  stroke: var(--adc-icon-glyph);
+  stroke-width: 0.9;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.adc-file-icon-fill {
+  fill: var(--adc-icon-glyph);
+}
+
+.adc-file-icon-flask {
+  fill: var(--adc-flask);
+}
+
+.adc-file-icon-flask-neck {
+  fill: var(--adc-flask-neck);
+}
+
+.adc-tt-path {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.adc-tt-dir {
+  color: var(--adc-tt-dir);
+}
+
+.adc-tt-name {
+  color: var(--adc-text-bright);
+}
+
+.adc-tt-time {
+  color: var(--adc-tt-time);
+}
+
+.adc-tt-stats {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding-left: 1px;
+  margin-top: 5.5px;
+  height: 16px;
+}
+
+.adc-tt-add {
+  color: var(--adc-green-text);
+}
+
+.adc-tt-rem {
+  color: var(--adc-red-text);
+}
+
+.adc-tt-binary {
+  color: var(--adc-tt-binary);
+}
+
+.adc-tt-badge {
+  padding: 0 4.5px;
+  border-radius: 3px;
+  background: var(--adc-badge-bg);
+  font-family: var(--adc-font-sans);
+  font-size: 10.5px;
+  line-height: 15px;
+  color: var(--adc-badge-text);
+}
+
+.adc-diff {
+  margin-top: 9.5px;
+  padding: 4px 0 3px;
+  border-radius: 5px;
+  background: var(--adc-diff-box);
+  overflow: hidden;
+}
+
+.adc-diff-row {
+  display: flex;
+  height: 17px;
+  line-height: 17px;
+}
+
+.adc-diff-row--del {
+  background: var(--adc-diff-del);
+}
+
+.adc-diff-row--add {
+  background: var(--adc-diff-add);
+}
+
+.adc-diff-row--meta {
+  height: 19px;
+  line-height: 19px;
+}
+
+.adc-diff-prefix {
+  flex: none;
+  width: 12px;
+  padding-left: 6px;
+}
+
+.adc-diff-row--del .adc-diff-prefix {
+  color: var(--adc-red-prefix);
+}
+
+.adc-diff-row--add .adc-diff-prefix {
+  color: var(--adc-green-text);
+}
+
+.adc-diff-code {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  font: inherit;
+  color: var(--adc-diff-code);
+  white-space: pre;
+  text-overflow: ellipsis;
+}
+
+.adc-diff-row--meta .adc-diff-code {
+  color: var(--adc-diff-meta);
+}
+
+/* Visually hidden text for assistive tech (animated text is aria-hidden). */
+.adc-sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* -------------------------------------------------------------- hit area */
+.adc-hit {
+  position: absolute;
+  z-index: 4;
+  touch-action: pan-y;
+}
+
+/* --------------------------------------------------------- reduced motion */
+.adc.is-reduced *,
+.adc.is-reduced *::before,
+.adc.is-reduced *::after {
+  animation: none !important;
+  transition: none !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .adc *,
+  .adc *::before,
+  .adc *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}
